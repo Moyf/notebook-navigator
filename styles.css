@@ -226,6 +226,7 @@
     justify-content: center;
     box-shadow: none !important;
     outline: none !important;
+    cursor: pointer;
 }
 
 /* Reduce button padding in headers to prevent overflow */
@@ -346,6 +347,7 @@
     flex: 1;
     min-width: 0; /* Critical: allows flex children to shrink below their min-content width */
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 /* Folder hover state - desktop only */
@@ -1606,6 +1608,7 @@ body.nn-resizing {
 /* Virtual file item wrapper - position relative for separator positioning */
 .nn-virtual-file-item {
     position: relative;
+    cursor: pointer;
 }
 
 /* ========================================================================
