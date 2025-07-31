@@ -60,6 +60,7 @@ export const STRINGS_DE = {
         customSort: 'Benutzerdefiniert', // Label for custom sorting mode (English: Custom)
         showFolders: 'Navigation anzeigen', // Tooltip for button to show the navigation pane (English: Show navigation)
         hideFolders: 'Navigation ausblenden', // Tooltip for button to hide the navigation pane (English: Hide navigation)
+        revealFile: 'Datei anzeigen', // Tooltip for button to reveal current file in navigator (English: Reveal file)
         toggleSubfolders: 'Notizen aus Unterordnern anzeigen', // Tooltip for button to toggle showing notes from subfolders (English: Show notes from subfolders)
         autoExpandFoldersTags: 'Ordner und Tags automatisch erweitern', // Tooltip for button to toggle auto-expanding folders and tags when selected (English: Auto-expand folders and tags)
         showDualPane: 'Zweispaltige Ansicht anzeigen', // Tooltip for button to show dual-pane layout (English: Show dual panes)

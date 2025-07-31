@@ -57,10 +57,14 @@ interface ListPaneProps {
      * other Obsidian views.
      */
     rootContainerRef: React.RefObject<HTMLDivElement | null>;
+    /**
+     * Function to reveal/navigate to a specific file in the navigator
+     */
+    onRevealFile?: (file: TFile) => void;
 }
 
 export const ListPane = React.memo(
-    forwardRef<ListPaneHandle, ListPaneProps>(function ListPane(props, ref) {
+    forwardRef<ListPaneHandle, ListPaneProps>(function ListPane({ rootContainerRef, onRevealFile }, ref) {
         const { app, isMobile, tagTreeService } = useServices();
         const selectionState = useSelectionState();
         const selectionDispatch = useSelectionDispatch();
@@ -948,6 +952,14 @@ export const ListPane = React.memo(
 
         renderCountRef.current++;
 
+        // Handler for revealing the current active file
+        const handleRevealCurrentFile = useCallback(() => {
+            const activeFile = app.workspace.getActiveFile();
+            if (activeFile && onRevealFile) {
+                onRevealFile(activeFile);
+            }
+        }, [app, onRevealFile]);
+
         // Expose the virtualizer instance and file lookup method via the ref
         useImperativeHandle(
             ref,
@@ -967,7 +979,7 @@ export const ListPane = React.memo(
             items: listItems,
             virtualizer: rowVirtualizer,
             focusedPane: 'files',
-            containerRef: props.rootContainerRef,
+            containerRef: rootContainerRef,
             pathToIndex: filePathToIndex,
             files: files,
             fileIndexMap: fileIndexMap
@@ -977,7 +989,7 @@ export const ListPane = React.memo(
         if (!selectedFolder && !selectedTag) {
             return (
                 <div className="nn-list-pane">
-                    <PaneHeader type="files" onHeaderClick={handleScrollToTop} currentDateGroup={currentDateGroup} />
+                    <PaneHeader type="files" onHeaderClick={handleScrollToTop} currentDateGroup={currentDateGroup} onRevealFile={handleRevealCurrentFile} />
                     <div className="nn-list-pane-scroller nn-empty-state">
                         <div className="nn-empty-message">{strings.listPane.emptyStateNoSelection}</div>
                     </div>
@@ -988,7 +1000,7 @@ export const ListPane = React.memo(
         if (files.length === 0) {
             return (
                 <div className="nn-list-pane">
-                    <PaneHeader type="files" onHeaderClick={handleScrollToTop} currentDateGroup={currentDateGroup} />
+                    <PaneHeader type="files" onHeaderClick={handleScrollToTop} currentDateGroup={currentDateGroup} onRevealFile={handleRevealCurrentFile} />
                     <div className="nn-list-pane-scroller nn-empty-state">
                         <div className="nn-empty-message">{strings.listPane.emptyStateNoNotes}</div>
                     </div>
@@ -998,7 +1010,7 @@ export const ListPane = React.memo(
 
         return (
             <div className="nn-list-pane">
-                <PaneHeader type="files" onHeaderClick={handleScrollToTop} currentDateGroup={currentDateGroup} />
+                <PaneHeader type="files" onHeaderClick={handleScrollToTop} currentDateGroup={currentDateGroup} onRevealFile={handleRevealCurrentFile} />
                 <div
                     ref={scrollContainerRefCallback}
                     className={`nn-list-pane-scroller ${isSlimMode ? 'nn-slim-mode' : ''}`}

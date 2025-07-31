@@ -60,6 +60,7 @@ export const STRINGS_JA = {
         customSort: 'カスタム', // Label for custom sorting mode (English: Custom)
         showFolders: 'ナビゲーションを表示', // Tooltip for button to show the navigation pane (English: Show navigation)
         hideFolders: 'ナビゲーションを非表示', // Tooltip for button to hide the navigation pane (English: Hide navigation)
+        revealFile: 'ファイルを表示', // Tooltip for button to reveal current file in navigator (English: Reveal file)
         toggleSubfolders: 'サブフォルダのノートを表示', // Tooltip for button to toggle showing notes from subfolders (English: Show notes from subfolders)
         autoExpandFoldersTags: 'フォルダとタグを自動展開', // Tooltip for button to toggle auto-expanding folders and tags when selected (English: Auto-expand folders and tags)
         showDualPane: 'デュアルペインを表示', // Tooltip for button to show dual-pane layout (English: Show dual panes)

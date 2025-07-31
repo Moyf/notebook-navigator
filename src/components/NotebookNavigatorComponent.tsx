@@ -329,7 +329,7 @@ export const NotebookNavigatorComponent = React.memo(
                     rootContainerRef={containerRef}
                 />
                 {!uiState.singlePane && <div className="nn-resize-handle" {...resizeHandleProps} />}
-                <ListPane ref={listPaneRef} rootContainerRef={containerRef} />
+                <ListPane ref={listPaneRef} rootContainerRef={containerRef} onRevealFile={navigateToFile} />
             </div>
         );
     })

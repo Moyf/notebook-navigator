@@ -38,6 +38,7 @@ interface PaneHeaderProps {
     type: 'navigation' | 'files';
     onHeaderClick?: () => void;
     currentDateGroup?: string | null;
+    onRevealFile?: () => void;
 }
 
 /**
@@ -49,7 +50,7 @@ interface PaneHeaderProps {
  * @param props.type - Whether this is the header for the 'folder' or 'file' pane
  * @returns A header element with context-appropriate action buttons
  */
-export function PaneHeader({ type, onHeaderClick, currentDateGroup }: PaneHeaderProps) {
+export function PaneHeader({ type, onHeaderClick, currentDateGroup, onRevealFile }: PaneHeaderProps) {
     const iconRef = React.useRef<HTMLSpanElement>(null);
     const { app, isMobile } = useServices();
     const { settings, updateSettings } = useSettings();
@@ -301,6 +302,12 @@ export function PaneHeader({ type, onHeaderClick, currentDateGroup }: PaneHeader
         });
     }, [updateSettings]);
 
+    const handleRevealFile = useCallback(() => {
+        if (onRevealFile) {
+            onRevealFile();
+        }
+    }, [onRevealFile]);
+
     // Helper function to get header title
     const getHeaderTitle = (useFolderName = false): string => {
         let title = strings.common.noSelection;
@@ -524,6 +531,15 @@ export function PaneHeader({ type, onHeaderClick, currentDateGroup }: PaneHeader
                             </span>
                         )}
                         <div className="nn-header-actions">
+                            <button
+                                className="nn-icon-button"
+                                aria-label={strings.paneHeader.revealFile}
+                                onClick={handleRevealFile}
+                                disabled={!app.workspace.getActiveFile()}
+                                tabIndex={-1}
+                            >
+                                <ObsidianIcon name="locate" />
+                            </button>
                             <button
                                 className={`nn-icon-button ${settings.showNotesFromSubfolders ? 'nn-icon-button-active' : ''}`}
                                 aria-label={strings.paneHeader.toggleSubfolders}

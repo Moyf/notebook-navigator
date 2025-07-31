@@ -60,6 +60,7 @@ export const STRINGS_ZH = {
         customSort: '自定义', // Label for custom sorting mode (English: Custom)
         showFolders: '显示导航', // Tooltip for button to show the navigation pane (English: Show navigation)
         hideFolders: '隐藏导航', // Tooltip for button to hide the navigation pane (English: Hide navigation)
+        revealFile: '显示文件', // Tooltip for button to reveal current file in navigator (English: Reveal file)
         toggleSubfolders: '显示子文件夹中的笔记', // Tooltip for button to toggle showing notes from subfolders (English: Show notes from subfolders)
         autoExpandFoldersTags: '自动展开文件夹和标签', // Tooltip for button to toggle auto-expanding folders and tags when selected (English: Auto-expand folders and tags)
         showDualPane: '显示双窗格', // Tooltip for button to show dual-pane layout (English: Show dual panes)
